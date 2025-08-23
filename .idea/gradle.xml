@@ -10,6 +10,13 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/poke-sdk" />
+            <option value="$PROJECT_DIR$/poke-sdk/poke-sdk-core" />
+            <option value="$PROJECT_DIR$/poke-sdk/poke-sdk-core-android" />
+            <option value="$PROJECT_DIR$/poke-sdk/poke-sdk-data" />
+            <option value="$PROJECT_DIR$/poke-sdk/poke-sdk-data-local" />
+            <option value="$PROJECT_DIR$/poke-sdk/poke-sdk-data-remote" />
+            <option value="$PROJECT_DIR$/poke-sdk/poke-sdk-domain" />
           </set>
         </option>
       </GradleProjectSettings>

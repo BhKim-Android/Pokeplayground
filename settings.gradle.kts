@@ -21,4 +21,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "PokePlayground"
 include(":app")
- 
+include(":poke-sdk")
+include(":poke-sdk:poke-sdk-domain")
+include(":poke-sdk:poke-sdk-data")
+include(":poke-sdk:poke-sdk-core")
+include(":poke-sdk:poke-sdk-core-android")
+include(":poke-sdk:poke-sdk-data-remote")
+include(":poke-sdk:poke-sdk-data-local")
