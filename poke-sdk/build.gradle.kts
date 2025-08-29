@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -33,6 +35,17 @@ android {
 }
 
 dependencies {
+    implementation(project("poke-sdk-core"))
+    implementation(project("poke-sdk-data"))
+    implementation(project("poke-sdk-data-local"))
+    implementation(project("poke-sdk-data-remote"))
+    implementation(project("poke-sdk-domain"))
+    api(project("poke-sdk-feature-list"))
+
+
+    //Hilt
+    implementation("com.google.dagger:hilt-android:2.57.1") // Hilt 런타임 라이브러리
+    ksp("com.google.dagger:hilt-compiler:2.57.1")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
