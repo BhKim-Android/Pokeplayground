@@ -17,8 +17,9 @@ class PokeViewmodel @Inject constructor(
 
     val uiPokemon = pokeListUsecase().map { pagingData ->
         pagingData.map { pokemon ->
-            val id = pokemon.url.trimEnd('/').split("/").lastOrNull()?.toIntOrNull()
+            val id = pokemon.url.trimEnd('/').split("/").lastOrNull()?.toIntOrNull() ?: 0
             UiPokemon(
+                id = id,
                 name = pokemon.name,
                 url = pokemon.url,
                 image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
