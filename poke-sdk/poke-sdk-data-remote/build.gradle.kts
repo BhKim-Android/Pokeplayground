@@ -46,8 +46,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     //Hilt
-    implementation("com.google.dagger:hilt-android:2.51.1") // Hilt 런타임 라이브러리
-    ksp("com.google.dagger:hilt-compiler:2.51.1")
+    implementation("com.google.dagger:hilt-android:2.57.1") // Hilt 런타임 라이브러리
+    ksp("com.google.dagger:hilt-compiler:2.57.1")
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:3.0.0")
@@ -61,4 +61,10 @@ dependencies {
 
     // Kotlin Coroutines (Retrofit 2.6.0 이상에서는 추가 어댑터 불필요)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+
+    // paging Runtime (with Android dependencies)
+    implementation(libs.androidx.paging.runtime)
+
+    // alternatively - without Android dependencies for tests
+    implementation(libs.androidx.paging.common)
 }

@@ -6,14 +6,14 @@ import com.kimbh.poke_data_remote.model.species.SpeciesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface PokeApiService {
 
     // 기본 리스트
-    @GET("/pokemon")
+    @GET
     suspend fun pokeList(
-        @Query("limit") limit: Int = 20
+        @Url url: String
     ): Response<PokeListResponse>
 
     // 이미지/스텟
