@@ -1,19 +1,26 @@
 [versions]
 agp = "8.11.1"
-kotlin = "2.0.21"
+kotlin = "2.2.0"
 coreKtx = "1.17.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
-lifecycleRuntimeKtx = "2.9.2"
+lifecycleRuntimeKtx = "2.9.3"
 activityCompose = "1.10.1"
-composeBom = "2024.09.00"
+composeBom = "2025.08.01"
 appcompat = "1.7.1"
+lifecycleViewmodelCompose = "2.9.3"
 material = "1.12.0"
-jetbrainsKotlinJvm = "2.0.21"
+jetbrainsKotlinJvm = "2.2.10"
+kotlinxCoroutinesAndroid = "1.10.2"
+paging = "3.3.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
+androidx-paging-common = { module = "androidx.paging:paging-common", version.ref = "paging" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -29,6 +36,8 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
