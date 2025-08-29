@@ -11,3 +11,14 @@ kotlin {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
     }
 }
+
+dependencies {
+    implementation(project(":poke-sdk:poke-sdk-core"))
+
+    implementation("javax.inject:javax.inject:1")
+
+    implementation(libs.kotlinx.coroutines.android)
+
+    // alternatively - without Android dependencies for tests
+    implementation(libs.androidx.paging.common)
+}
