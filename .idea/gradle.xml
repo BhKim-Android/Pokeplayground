@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/poke-sdk/poke-sdk-data-local" />
             <option value="$PROJECT_DIR$/poke-sdk/poke-sdk-data-remote" />
             <option value="$PROJECT_DIR$/poke-sdk/poke-sdk-domain" />
+            <option value="$PROJECT_DIR$/poke-sdk/poke-sdk-feature-detail" />
             <option value="$PROJECT_DIR$/poke-sdk/poke-sdk-feature-list" />
           </set>
         </option>
