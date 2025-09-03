@@ -4,21 +4,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.kimbh.poke_sdk_domain.usecase.PokeListUsecase
-import com.kimbh.poke_sdk_feature_list.model.UiPokemon
+import com.kimbh.poke_sdk_domain.usecase.ListUsecase
+import com.kimbh.poke_sdk_feature_list.model.UiPokemonList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
-class PokeViewmodel @Inject constructor(
-    pokeListUsecase: PokeListUsecase
+class ListViewmodel @Inject constructor(
+    listUsecase: ListUsecase
 ) : ViewModel() {
 
-    val uiPokemon = pokeListUsecase().map { pagingData ->
+    val uiPokemonList = listUsecase().map { pagingData ->
         pagingData.map { pokemon ->
             val id = pokemon.url.trimEnd('/').split("/").lastOrNull()?.toIntOrNull() ?: 0
-            UiPokemon(
+            UiPokemonList(
                 id = id,
                 name = pokemon.name,
                 url = pokemon.url,

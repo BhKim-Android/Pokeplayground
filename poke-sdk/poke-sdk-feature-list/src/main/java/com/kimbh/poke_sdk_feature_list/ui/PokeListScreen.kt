@@ -2,10 +2,8 @@ package com.kimbh.poke_sdk_feature_list.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -13,13 +11,18 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import com.kimbh.poke_sdk_feature_list.compose.PokeItem
-import com.kimbh.poke_sdk_feature_list.viewmodel.PokeViewmodel
+import com.kimbh.poke_sdk_feature_list.viewmodel.ListViewmodel
+import kotlinx.serialization.Serializable
+
+@Serializable
+object PokeListDestination
 
 @Composable
 fun PokeListScreen(
-    viewmodel: PokeViewmodel = hiltViewModel()
+    viewmodel: ListViewmodel = hiltViewModel(),
+    onItemClick: (Int) -> Unit
 ) {
-    val lazyPagingItems = viewmodel.uiPokemon.collectAsLazyPagingItems()
+    val lazyPagingItems = viewmodel.uiPokemonList.collectAsLazyPagingItems()
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(count = 3),
@@ -32,7 +35,9 @@ fun PokeListScreen(
             key = lazyPagingItems.itemKey { it.name }
         ) { index ->
             lazyPagingItems[index]?.let { item ->
-                PokeItem(item)
+                PokeItem(item) {
+                    onItemClick(item.id)
+                }
             }
         }
     }
