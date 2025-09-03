@@ -13,7 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.kimbh.poke_sdk_feature_list.ui.PokeListScreen
+import com.kimbh.poke_sdk.ui.SdkNavigation
 import com.kimbh.pokeplayground.ui.theme.PokePlaygroundTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,8 +34,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen(innerPadding: PaddingValues) {
+
     Box(modifier = Modifier.padding(innerPadding)) {
-        PokeListScreen()
+        SdkNavigation(innerPadding)
     }
 }
 
