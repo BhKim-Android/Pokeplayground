@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
 }
@@ -34,16 +36,20 @@ android {
             jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
         }
     }
+
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {
-    implementation(project("poke-sdk-core"))
-    implementation(project("poke-sdk-data"))
-    implementation(project("poke-sdk-data-local"))
-    implementation(project("poke-sdk-data-remote"))
-    implementation(project("poke-sdk-domain"))
-    api(project("poke-sdk-feature-list"))
-
+    implementation(project(":poke-sdk:poke-sdk-core"))
+    implementation(project(":poke-sdk:poke-sdk-data"))
+    implementation(project(":poke-sdk:poke-sdk-data-local"))
+    implementation(project(":poke-sdk:poke-sdk-data-remote"))
+    implementation(project(":poke-sdk:poke-sdk-domain"))
+    implementation(project(":poke-sdk:poke-sdk-feature-list"))
+    implementation(project(":poke-sdk:poke-sdk-feature-detail"))
 
     //Hilt
     implementation("com.google.dagger:hilt-android:2.57.1") // Hilt 런타임 라이브러리
@@ -55,4 +61,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 }
