@@ -4,6 +4,6 @@ import androidx.paging.PagingData
 import com.kimbh.poke_sdk_domain.model.Pokemon
 import kotlinx.coroutines.flow.Flow
 
-interface PokeRepository {
+interface ListRepository {
     fun pokeList(): Flow<PagingData<Pokemon>>
 }

@@ -1,8 +1,8 @@
-package com.kimbh.poke_data_remote.model.pokemon
+package com.kimbh.poke_data_remote.model.species.growthrate
 
 import com.google.gson.annotations.SerializedName
 
-data class AbilityResponse(
+data class GrowthRateResponse(
     @SerializedName("name")
     val name: String,
 

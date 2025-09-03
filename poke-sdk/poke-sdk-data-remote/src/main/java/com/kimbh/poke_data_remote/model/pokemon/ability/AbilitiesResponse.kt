@@ -1,4 +1,4 @@
-package com.kimbh.poke_data_remote.model.pokemon
+package com.kimbh.poke_data_remote.model.pokemon.ability
 
 import com.google.gson.annotations.SerializedName
 
