@@ -1,5 +1,8 @@
 package com.kimbh.poke_sdk_feature_list.ui
 
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -17,9 +20,12 @@ import kotlinx.serialization.Serializable
 @Serializable
 object PokeListDestination
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun PokeListScreen(
     viewmodel: ListViewmodel = hiltViewModel(),
+    sharedTransitionScope: SharedTransitionScope,
+    animatedContentScope: AnimatedContentScope,
     onItemClick: (Int) -> Unit
 ) {
     val lazyPagingItems = viewmodel.uiPokemonList.collectAsLazyPagingItems()
@@ -35,7 +41,11 @@ fun PokeListScreen(
             key = lazyPagingItems.itemKey { it.name }
         ) { index ->
             lazyPagingItems[index]?.let { item ->
-                PokeItem(item) {
+                PokeItem(
+                    sharedTransitionScope = sharedTransitionScope,
+                    animatedContentScope = animatedContentScope,
+                    uiPokemonList = item
+                ) {
                     onItemClick(item.id)
                 }
             }

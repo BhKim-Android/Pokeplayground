@@ -1,5 +1,8 @@
 package com.kimbh.poke_sdk_feature_list.compose
 
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -15,12 +18,16 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.kimbh.poke_sdk_feature_list.model.UiPokemonList
 import java.util.Locale
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun PokeItem(
+    sharedTransitionScope: SharedTransitionScope,
+    animatedContentScope: AnimatedContentScope,
     uiPokemonList: UiPokemonList,
     onClick: () -> Unit
 ) {
@@ -36,21 +43,38 @@ fun PokeItem(
             },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        AsyncImage(
-            model = uiPokemonList.image, contentDescription = "pokemon image",
-            modifier = Modifier
-                .weight(0.8f)
-                .aspectRatio(1f)
-        )
-        Text(
-            text = uiPokemonList.name,
-            modifier = Modifier.weight(0.2f),
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            text = String.format(Locale.US, "#%03d", uiPokemonList.id),
-            modifier = Modifier.weight(0.2f),
-            color = Color.Gray
-        )
+        with(sharedTransitionScope) {
+            AsyncImage(
+                model = uiPokemonList.image, contentDescription = "pokemon image",
+                modifier = Modifier
+                    .weight(0.8f)
+                    .aspectRatio(1f)
+                    .sharedElement(
+                        sharedContentState = sharedTransitionScope.rememberSharedContentState(key = "image-${uiPokemonList.id}"),
+                        animatedVisibilityScope = animatedContentScope
+                    )
+            )
+            Text(
+                text = uiPokemonList.name,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .weight(0.2f)
+                    .sharedElement(
+                        sharedContentState = sharedTransitionScope.rememberSharedContentState(key = "name-${uiPokemonList.name}"),
+                        animatedVisibilityScope = animatedContentScope
+                    )
+            )
+            Text(
+                text = String.format(Locale.US, "#%03d", uiPokemonList.id),
+                modifier = Modifier
+                    .weight(0.2f)
+                    .sharedElement(
+                        sharedContentState = sharedTransitionScope.rememberSharedContentState(key = "id-${uiPokemonList.id}"),
+                        animatedVisibilityScope = animatedContentScope
+                    ),
+                color = Color.Gray
+            )
+        }
     }
 }

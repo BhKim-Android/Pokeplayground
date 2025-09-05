@@ -44,6 +44,7 @@ android {
 dependencies {
     implementation(project(":poke-sdk:poke-sdk-core"))
     implementation(project(":poke-sdk:poke-sdk-domain"))
+    implementation(project(":poke-sdk:poke-sdk-core-android"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
