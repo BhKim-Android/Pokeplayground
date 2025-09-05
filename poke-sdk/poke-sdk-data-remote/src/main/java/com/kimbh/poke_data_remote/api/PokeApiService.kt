@@ -17,13 +17,13 @@ interface PokeApiService {
     ): Response<PokeListResponse>
 
     // 이미지/스텟
-    @GET("/pokemon/{id}")
+    @GET("pokemon/{id}")
     suspend fun pokemon(
         @Path("id") id: Int
     ): Response<PokemonResponse>
 
     // 이름
-    @GET("/pokemon-species/{id}")
+    @GET("pokemon-species/{id}")
     suspend fun pokemonSpecies(
         @Path("id") id: Int
     ): Response<SpeciesResponse>

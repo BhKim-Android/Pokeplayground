@@ -16,7 +16,8 @@ class DetailRepositoryImpl @Inject constructor(
                     data = PokeDetail(
                         id = result.data.id,
                         height = result.data.height,
-                        weight = result.data.weight
+                        weight = result.data.weight,
+                        type = result.data.type
                     )
                 )
             }

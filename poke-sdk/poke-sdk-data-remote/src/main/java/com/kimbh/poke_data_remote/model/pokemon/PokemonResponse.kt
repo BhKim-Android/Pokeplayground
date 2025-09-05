@@ -14,7 +14,7 @@ data class PokemonResponse(
     val base_experience: Int,
 
     @SerializedName("sprites")
-    val sprites: List<SprityResponse>,
+    val sprites: SprityResponse,
 
     @SerializedName("forms")
     val forms: List<FormResponse>,

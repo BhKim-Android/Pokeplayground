@@ -17,8 +17,11 @@ class DetailRemoteDataSourceImpl @Inject constructor(
                 response.body()?.let {
                     // 성공..
                     CoreResult.Success(
-                        PokeDetailDTO(
-                            it.id, it.height, it.weight
+                        data = PokeDetailDTO(
+                            id = it.id,
+                            height = it.height,
+                            weight = it.weight,
+                            type = it.types.map { typesResponse -> typesResponse.type.name }
                         )
                     )
                 } ?: let {
@@ -29,7 +32,7 @@ class DetailRemoteDataSourceImpl @Inject constructor(
                 response.errorBody()?.let {
                     CoreResult.Error(Throwable(it.string()))
                 } ?: let {
-                    CoreResult.Error(Throwable("erro empty"))
+                    CoreResult.Error(Throwable("error empty"))
                 }
             }
         } catch (e: Exception) {
