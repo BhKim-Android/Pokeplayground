@@ -53,27 +53,12 @@ fun HeaderPokeDetail(
     modifier: Modifier,
     pokemonFullUi: PokemonFullUi
 ) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        TopAppBar(
-            title = { },
-            navigationIcon = {
-                IconButton(onClick = { /* TODO */ }) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                }
-            },
-            actions = {
-                IconButton(onClick = { /* TODO */ }) {
-                    Icon(Icons.Default.Settings, contentDescription = "Settings")
-                }
-            },
-            colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = Color.Transparent, // 배경 투명 처리
-                scrolledContainerColor = Color.Transparent
-            )
-        )
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier.background(color = Color.Blue)
+    ) {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(20.dp),
-            modifier = Modifier.height(IntrinsicSize.Min)
+            horizontalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             with(sharedTransitionScope) {
                 AsyncImage(
@@ -107,11 +92,11 @@ fun HeaderPokeDetail(
                         color = Color.Gray,
                         modifier = Modifier
                             .sharedElement(
-                            sharedContentState = sharedTransitionScope.rememberSharedContentState(
-                                key = "id-${pokemonFullUi.detail.id}"
-                            ),
-                            animatedVisibilityScope = animatedContentScope
-                        )
+                                sharedContentState = sharedTransitionScope.rememberSharedContentState(
+                                    key = "id-${pokemonFullUi.detail.id}"
+                                ),
+                                animatedVisibilityScope = animatedContentScope
+                            )
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     pokemonFullUi.detail.type.forEach {
@@ -175,7 +160,7 @@ private fun HeaderPokeDetailPreview() { // Preview는 private으로 선언하는
                         type = listOf(PokemonType.GRASS, PokemonType.POISON)
                     ),
                     species = UiSpecies(id = 1, name = "이상해씨") // 예시 이름 수정
-                )
+                ),
             )
         }
     }
