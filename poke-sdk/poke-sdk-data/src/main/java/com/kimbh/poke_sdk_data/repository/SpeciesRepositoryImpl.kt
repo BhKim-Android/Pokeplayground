@@ -12,7 +12,20 @@ class SpeciesRepositoryImpl @Inject constructor(
     override suspend fun getSpecies(id: Int): CoreResult<Species> {
         return when (val result = speciesRemoteDataSource.getSpecies(id)) {
             is CoreResult.Success -> {
-                CoreResult.Success(data = Species(id = result.data.id, name = result.data.name))
+                CoreResult.Success(
+                    data = Species(
+                        id = result.data.id,
+                        name = result.data.name,
+                        flavor_text = result.data.flavor_text_entries.firstOrNull { flavorTextDTO ->
+                            flavorTextDTO.language.name == "ko"
+                        }?.flavor_text.orEmpty(),
+                        gender_rate = result.data.gender_rate,
+                        egg_groups = result.data.egg_groups,
+                        genera = result.data.genera.firstOrNull { generaDTO ->
+                            generaDTO.language.name == "ko"
+                        }?.genus.orEmpty()
+                    )
+                )
             }
 
             is CoreResult.Error -> {
