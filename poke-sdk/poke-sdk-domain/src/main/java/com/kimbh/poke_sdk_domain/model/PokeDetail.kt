@@ -4,5 +4,7 @@ data class PokeDetail(
     val id: Int,
     val height: Int,
     val weight: Int,
+    val abilities: List<String>,
+    val stats: List<StatDetail>,
     val type: List<String>
 )
