@@ -183,6 +183,7 @@ fun PokeDetailScreen(
 
                 ContentsPokeDetail(
                     selectTabIndex = selectTabIndex,
+                    pokemonFullUi = result.data,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(

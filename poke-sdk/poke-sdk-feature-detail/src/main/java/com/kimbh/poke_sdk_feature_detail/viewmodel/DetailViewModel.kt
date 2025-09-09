@@ -11,6 +11,7 @@ import com.kimbh.poke_sdk_core.ui.UiState
 import com.kimbh.poke_sdk_domain.usecase.DetailUsecase
 import com.kimbh.poke_sdk_domain.usecase.SpeciesUseCase
 import com.kimbh.poke_sdk_feature_detail.model.PokemonFullUi
+import com.kimbh.poke_sdk_feature_detail.model.Stats
 import com.kimbh.poke_sdk_feature_detail.model.UiPokemonDetail
 import com.kimbh.poke_sdk_feature_detail.model.UiSpecies
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -48,11 +49,19 @@ class DetailViewModel @Inject constructor(
                                 height = pokeDetail.height,
                                 weight = pokeDetail.weight,
                                 image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeDetail.id}.png",
+                                abilities = pokeDetail.abilities,
+                                stats = pokeDetail.stats.map {
+                                    Stats(base_stat = it.base_stat, name = it.name)
+                                },
                                 type = pokeDetail.type.map { PokemonType.fromTypeName(it) }
                             ),
                             species = UiSpecies(
                                 id = species.id,
-                                name = species.name
+                                name = species.name,
+                                flavor_text = species.flavor_text,
+                                gender_rate = species.gender_rate,
+                                egg_groups = species.egg_groups,
+                                genera = species.genera
                             )
                         )
                     )

@@ -7,5 +7,7 @@ data class UiPokemonDetail(
     val height: Int,
     val weight: Int,
     val image: String,
+    val abilities: List<String>,
+    val stats: List<Stats>,
     val type: List<PokemonType>
 )

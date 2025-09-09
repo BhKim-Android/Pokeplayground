@@ -55,7 +55,9 @@ fun HeaderPokeDetail(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.background(color = Color.Blue)
+        modifier = modifier
+            .background(color = Color.White)
+            .padding(horizontal = 20.dp, vertical = 40.dp)
     ) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(20.dp)
@@ -129,39 +131,6 @@ fun HeaderPokeDetail(
                     }
                 }
             }
-        }
-    }
-}
-
-@SuppressLint("UnusedContentLambdaTargetStateParameter")
-@OptIn(ExperimentalSharedTransitionApi::class) // Preview 함수에도 어노테이션 추가
-@Preview(showBackground = true)
-@Composable
-private fun HeaderPokeDetailPreview() { // Preview는 private으로 선언하는 것이 좋습니다.
-    // 1. SharedTransitionScope를 제공하기 위해 SharedTransitionLayout으로 감쌉니다.
-    SharedTransitionLayout {
-        // 2. AnimatedContentScope를 제공하기 위해 AnimatedContent로 감쌉니다.
-        //    targetState는 Preview 목적이므로 임의의 값을 사용합니다. (e.g., true)
-        AnimatedContent(
-            targetState = true,
-            label = "PokemonDetailPreview"
-        ) {
-            // 3. 각 레이아웃의 스코프를 'this@...'를 사용해 명시적으로 전달합니다.
-            HeaderPokeDetail(
-                sharedTransitionScope = this@SharedTransitionLayout,
-                animatedContentScope = this@AnimatedContent,
-                modifier = Modifier.fillMaxWidth(),
-                pokemonFullUi = PokemonFullUi(
-                    detail = UiPokemonDetail(
-                        id = 1,
-                        height = 7,
-                        weight = 69,
-                        image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-                        type = listOf(PokemonType.GRASS, PokemonType.POISON)
-                    ),
-                    species = UiSpecies(id = 1, name = "이상해씨") // 예시 이름 수정
-                ),
-            )
         }
     }
 }
