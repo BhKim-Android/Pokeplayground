@@ -3,7 +3,8 @@ package com.kimbh.poke_data_remote.datasource
 import com.kimbh.poke_data_remote.api.PokeApiService
 import com.kimbh.poke_sdk_core.result.CoreResult
 import com.kimbh.poke_sdk_data.datasource.DetailRemoteDataSource
-import com.kimbh.poke_sdk_data.model.PokeDetailDTO
+import com.kimbh.poke_sdk_data.model.detail.PokeDetailDTO
+import com.kimbh.poke_sdk_data.model.detail.StatDTO
 import javax.inject.Inject
 
 class DetailRemoteDataSourceImpl @Inject constructor(
@@ -21,6 +22,16 @@ class DetailRemoteDataSourceImpl @Inject constructor(
                             id = it.id,
                             height = it.height,
                             weight = it.weight,
+                            abilities = it.abilities.map { abilitiesResponse ->
+                                abilitiesResponse.ability.name
+                            },
+                            stats = it.stats.map { stateResponse ->
+                                StatDTO(
+                                    base_stat = stateResponse.base_stat,
+                                    effort = stateResponse.effort,
+                                    name = stateResponse.stat.name
+                                )
+                            },
                             type = it.types.map { typesResponse -> typesResponse.type.name }
                         )
                     )

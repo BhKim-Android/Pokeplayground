@@ -31,5 +31,8 @@ data class SpeciesResponse(
     val id: Int,
 
     @SerializedName("name")
-    val name: String
+    val name: String,
+
+    @SerializedName("gender_rate")
+    val gender_rate: Int
 )
